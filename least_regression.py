@@ -132,7 +132,10 @@ def regression_line(no_of_values):
 
     # this is graph down here(You must import matplotlib)
     plt.scatter(list_exs, list_ys, s=40)
-    plt.plot(new_points_for_line, list_exs)
+    
+    #Had to update the below because it wasnt giving me the line of best fit but now it works!
+    #I was mixing up the x and y values 
+    plt.plot(list_exs,new_points_for_line)
     plt.show()
     return list_exs,list_ys,new_points_for_line
 
