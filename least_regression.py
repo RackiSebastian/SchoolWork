@@ -1,4 +1,9 @@
 import matplotlib.pyplot as plt
+
+
+############################################################################################################
+#THIS IS THE LONGER PART I LATER REDUCED IT AND MADE NORMAL VARIABLE NAMES AND ALSO COMMENTED IT OUT
+############################################################################################################
 '''n = int(input("How many values do you have?"))
 
 list_exs =[]
@@ -74,13 +79,15 @@ for g in range(len(list_exs)):
 plt.scatter(list_exs,list_ys,s=40)
 plt.plot(new_points_for_line,list_exs)
 plt.show()'''
-
+############################################################################################
+#THIS IS THE SHORTER SOLUTION THAT MAKES WAY MORE SENSE!!!
+###########################################################################################
 
 def regression_line(no_of_values):
     list_exs =[]
     list_ys=[]
-    for numbers in range(int(no_of_values) * 2 ):
-        if numbers >= 4:
+    for numbers in range(int(no_of_values) * 2 ):  #Seeing as there is two values(x,y) i will have number of values*2 
+        if numbers >= int(no_of_values): #If number is greater or equal to the number of values inputed that means i can move on to Y
             list_ys.append(int(input("Now please Enter Your Y's")))
         else:
             list_exs.append(int(input("Please Enter your X's")))
@@ -88,44 +95,54 @@ def regression_line(no_of_values):
     sum_of_ex = 0
     sqrt_ex = 0
     for sum_x in range(len(list_exs)):
-        sum_of_ex+= list_exs[sum_x]
-        sqrt_ex += list_exs[sum_x] ** 2
+        sum_of_ex+= list_exs[sum_x]          #Adding x's at position [0,1,2,3,...,n]
+        sqrt_ex += list_exs[sum_x] ** 2      #Getting The Square Root At Position [0,1,2,3,...,n]
 
     sum_of_y = 0
     sqrt_of_y = 0
-    for sum_y in range(len(list_ys)):
+    for sum_y in range(len(list_ys)):         #Same as Above
         sum_of_y += list_ys[sum_y]
         sqrt_of_y += list_ys[sum_y] ** 2
 
 
     x_y = 0
-    for both in range(len(list_ys)):
+    for both in range(len(list_ys)):           
         x_y += list_exs[both] * list_ys[both]
 
 
 
-
-    avg_x = sum_of_ex/len(list_exs)
+     #Here i will be getting the average of all the values and this will only work if the list is the same length and it has to be for the 
+    #least regression square
+    avg_x = sum_of_ex/len(list_exs)           
     avg_y = sum_of_y/len(list_ys)
     avg_x_y = x_y/len(list_exs)
     avg_sqrt_x = sqrt_ex/len(list_exs)
     avg_sqrt_y = sqrt_of_y/len(list_ys)
     avg_both = x_y/len(list_exs)
+    
+    #Formula = (y=ax+b)
 
     a = ((avg_x_y) -(avg_x * avg_y))/(avg_sqrt_x-((avg_x)**2))
     b = avg_y - ((a) * (avg_x))
-
+    
+    #Here i am getting the new points by substituting my x values into the formula y = ax+b
     new_points_for_line = []
     for new_points in range(len(list_exs)):
         new_points_for_line.append((a * list_exs[new_points]) + b)
 
-    # this is graph shiet down here
+    # this is graph down here(You must import matplotlib)
     plt.scatter(list_exs, list_ys, s=40)
     plt.plot(new_points_for_line, list_exs)
     plt.show()
     return list_exs,list_ys,new_points_for_line
 
+#Just testing
 regression_line(4)
+regression_line(10)
+regression_line(16)
+regression_line(0)
+regression_line(6)
+regression_line(7)
 
 
 
